@@ -1,5 +1,6 @@
 package appTests;
 
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -18,6 +19,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import appTasks.Tasks;
+import appVerificationPoints.VerificationPoints;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 
@@ -31,27 +34,12 @@ public class AppTest {
 	@FileParameters("Roteiro de testes - csv datasusss.csv")
 	@Test
 	public void GivenTrueWhenTestAndFindBlank(String clique, String site, String blank) {
-		click(clique);
-		urlTest(site);
-		blankTest(blank);
+		Tasks task = new Tasks(driver);
+		VerificationPoints verify = new VerificationPoints(driver);
+		task.click(clique);
+		verify.blankTest(blank);
+		verify.urlTest(site);
 
-	}
-	
-	public void click(String xpath) {
-		WebElement element = driver.findElement(By.cssSelector(xpath));
-		element.click();
-		
-	}
-	
-	public void blankTest(String pagestring) {
-		String codigoPagina = driver.getPageSource();
-		assertThat(codigoPagina, Matchers.containsString("Página em branco"));
-	}
-	
-	public void urlTest(String url) {
-		String expected = url;
-		String actual = driver.getCurrentUrl();
-		assertEquals(actual, expected);
 	}
 	
 	@BeforeClass

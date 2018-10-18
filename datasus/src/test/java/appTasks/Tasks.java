@@ -12,8 +12,8 @@ public class Tasks {
 		this.driver=driver;
 	}
 	
-	public void click(String xpath) {
-		WebElement element = driver.findElement(By.cssSelector(xpath));
+	public void click(String selector) {
+		WebElement element = driver.findElement(By.cssSelector(selector));
 		element.click();
 	}
 

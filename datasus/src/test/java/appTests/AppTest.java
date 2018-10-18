@@ -1,7 +1,5 @@
 package appTests;
 
-
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,7 +15,6 @@ import appTasks.Tasks;
 import appVerificationPoints.VerificationPoints;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
-import org.hamcrest.Matchers;
 
 @RunWith(JUnitParamsRunner.class)
 public class AppTest {
@@ -26,13 +23,12 @@ public class AppTest {
 	
 	@FileParameters("Roteiro de testes - csv datasusss.csv")
 	@Test
-	public void GivenTrueWhenTestAndFindBlank(String clique, String site, String blank) {
+	public void GivenTrueWhenTestAndFindBlank(String clique, String site) {
 		Tasks task = new Tasks(driver);
 		VerificationPoints verify = new VerificationPoints(driver);
 		task.click(clique);
-		verify.blankTest(blank);
 		verify.urlTest(site);
-
+		verify.blankTest();
 	}
 	
 	@BeforeClass
@@ -45,7 +41,6 @@ public class AppTest {
 		driver = new ChromeDriver();
 		String InitialPage = "http://datasus.saude.gov.br/perguntas-frequentes";
 		driver.get(InitialPage);
-
 	}
 
 	@After

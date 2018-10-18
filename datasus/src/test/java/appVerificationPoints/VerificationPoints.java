@@ -20,7 +20,7 @@ public class VerificationPoints {
 		assertEquals(actual, expected);
 	}
 	
-	public void blankTest(String pagestring) {
+	public void blankTest() {
 		String codigoPagina = driver.getPageSource();
 		assertThat(codigoPagina, Matchers.containsString("Página em branco"));
 	}
